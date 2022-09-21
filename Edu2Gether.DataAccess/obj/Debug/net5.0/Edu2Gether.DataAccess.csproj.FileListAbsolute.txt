@@ -1,0 +1,15 @@
+D:\FPT University\CN7\SWD391\Project\Edu2Gether.DataAccess\bin\Debug\net5.0\Edu2Gether.DataAccess.deps.json
+D:\FPT University\CN7\SWD391\Project\Edu2Gether.DataAccess\bin\Debug\net5.0\Edu2Gether.DataAccess.dll
+D:\FPT University\CN7\SWD391\Project\Edu2Gether.DataAccess\bin\Debug\net5.0\ref\Edu2Gether.DataAccess.dll
+D:\FPT University\CN7\SWD391\Project\Edu2Gether.DataAccess\bin\Debug\net5.0\Edu2Gether.DataAccess.pdb
+D:\FPT University\CN7\SWD391\Project\Edu2Gether.DataAccess\obj\Debug\net5.0\Edu2Gether.DataAccess.csproj.AssemblyReference.cache
+D:\FPT University\CN7\SWD391\Project\Edu2Gether.DataAccess\obj\Debug\net5.0\Edu2Gether.DataAccess.GeneratedMSBuildEditorConfig.editorconfig
+D:\FPT University\CN7\SWD391\Project\Edu2Gether.DataAccess\obj\Debug\net5.0\Edu2Gether.DataAccess.AssemblyInfoInputs.cache
+D:\FPT University\CN7\SWD391\Project\Edu2Gether.DataAccess\obj\Debug\net5.0\Edu2Gether.DataAccess.AssemblyInfo.cs
+D:\FPT University\CN7\SWD391\Project\Edu2Gether.DataAccess\obj\Debug\net5.0\Edu2Gether.DataAccess.csproj.CoreCompileInputs.cache
+D:\FPT University\CN7\SWD391\Project\Edu2Gether.DataAccess\obj\Debug\net5.0\Edu2Gether.DataAccess.dll
+D:\FPT University\CN7\SWD391\Project\Edu2Gether.DataAccess\obj\Debug\net5.0\ref\Edu2Gether.DataAccess.dll
+D:\FPT University\CN7\SWD391\Project\Edu2Gether.DataAccess\obj\Debug\net5.0\Edu2Gether.DataAccess.pdb
+D:\FPT University\CN7\SWD391\Project\Edu2Gether.DataAccess\bin\Debug\net5.0\Edu2Gether.DataAccess.runtimeconfig.json
+D:\FPT University\CN7\SWD391\Project\Edu2Gether.DataAccess\bin\Debug\net5.0\Edu2Gether.DataAccess.runtimeconfig.dev.json
+D:\FPT University\CN7\SWD391\Project\Edu2Gether.DataAccess\obj\Debug\net5.0\Edu2Gether.DataAccess.genruntimeconfig.cache
