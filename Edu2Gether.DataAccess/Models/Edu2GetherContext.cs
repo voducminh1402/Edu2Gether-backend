@@ -26,6 +26,7 @@ namespace Edu2Gether.DataAccess.Models
         public virtual DbSet<MentorMajor> MentorMajors { get; set; }
         public virtual DbSet<Payment> Payments { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
+        public virtual DbSet<Slot> Slots { get; set; }
         public virtual DbSet<Subject> Subjects { get; set; }
         public virtual DbSet<Transaction> Transactions { get; set; }
         public virtual DbSet<User> Users { get; set; }
@@ -65,6 +66,12 @@ namespace Edu2Gether.DataAccess.Models
                     .HasForeignKey(d => d.MenteeId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Booking_Mentee");
+
+                entity.HasOne(d => d.Slot)
+                    .WithMany(p => p.Bookings)
+                    .HasForeignKey(d => d.SlotId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Booking_Slot");
             });
 
             modelBuilder.Entity<Course>(entity =>
@@ -185,6 +192,19 @@ namespace Edu2Gether.DataAccess.Models
             modelBuilder.Entity<Role>(entity =>
             {
                 entity.Property(e => e.Id).ValueGeneratedNever();
+            });
+
+            modelBuilder.Entity<Slot>(entity =>
+            {
+                entity.Property(e => e.Id).ValueGeneratedNever();
+
+                entity.Property(e => e.MentorId).IsUnicode(false);
+
+                entity.HasOne(d => d.Mentor)
+                    .WithMany(p => p.Slots)
+                    .HasForeignKey(d => d.MentorId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Slot_Mentor");
             });
 
             modelBuilder.Entity<Subject>(entity =>

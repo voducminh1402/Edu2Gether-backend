@@ -41,6 +41,7 @@ namespace Edu2Gether.DataAccess.Models
         public string Comment { get; set; }
         [Column(TypeName = "datetime")]
         public DateTime? FeedbackTime { get; set; }
+        public int SlotId { get; set; }
 
         [ForeignKey(nameof(CourseId))]
         [InverseProperty("Bookings")]
@@ -48,6 +49,9 @@ namespace Edu2Gether.DataAccess.Models
         [ForeignKey(nameof(MenteeId))]
         [InverseProperty("Bookings")]
         public virtual Mentee Mentee { get; set; }
+        [ForeignKey(nameof(SlotId))]
+        [InverseProperty("Bookings")]
+        public virtual Slot Slot { get; set; }
         [InverseProperty(nameof(Payment.Booking))]
         public virtual ICollection<Payment> Payments { get; set; }
     }

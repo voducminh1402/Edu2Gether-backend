@@ -28,8 +28,8 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "D:\\FPT University\\CN7\\SWD391\\Project\\Edu2Gether.Presentation\\Edu2Gether.Presentation.csproj": {
-                "projectPath": "D:\\FPT University\\CN7\\SWD391\\Project\\Edu2Gether.Presentation\\Edu2Gether.Presentation.csproj"
+              "D:\\FPT University\\CN7\\SWD391\\Project\\Edu2Gether.DataAccess\\Edu2Gether.DataAccess.csproj": {
+                "projectPath": "D:\\FPT University\\CN7\\SWD391\\Project\\Edu2Gether.DataAccess\\Edu2Gether.DataAccess.csproj"
               }
             }
           }
@@ -44,6 +44,14 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[12.0.0, )"
+            },
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[12.0.0, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[5.0.17, )"
@@ -82,14 +90,14 @@
         }
       }
     },
-    "D:\\FPT University\\CN7\\SWD391\\Project\\Edu2Gether.Presentation\\Edu2Gether.Presentation.csproj": {
+    "D:\\FPT University\\CN7\\SWD391\\Project\\Edu2Gether.DataAccess\\Edu2Gether.DataAccess.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\FPT University\\CN7\\SWD391\\Project\\Edu2Gether.Presentation\\Edu2Gether.Presentation.csproj",
-        "projectName": "Edu2Gether.Presentation",
-        "projectPath": "D:\\FPT University\\CN7\\SWD391\\Project\\Edu2Gether.Presentation\\Edu2Gether.Presentation.csproj",
+        "projectUniqueName": "D:\\FPT University\\CN7\\SWD391\\Project\\Edu2Gether.DataAccess\\Edu2Gether.DataAccess.csproj",
+        "projectName": "Edu2Gether.DataAccess",
+        "projectPath": "D:\\FPT University\\CN7\\SWD391\\Project\\Edu2Gether.DataAccess\\Edu2Gether.DataAccess.csproj",
         "packagesPath": "C:\\Users\\VODUCMINH\\.nuget\\packages\\",
-        "outputPath": "D:\\FPT University\\CN7\\SWD391\\Project\\Edu2Gether.Presentation\\obj\\",
+        "outputPath": "D:\\FPT University\\CN7\\SWD391\\Project\\Edu2Gether.DataAccess\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\VODUCMINH\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -118,6 +126,14 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[12.0.0, )"
+            },
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[12.0.0, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[5.0.17, )"
@@ -136,13 +152,9 @@
               "target": "Package",
               "version": "[2.0.0, )"
             },
-            "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": {
+            "NTQ.Sdk.Core": {
               "target": "Package",
-              "version": "[1.11.1, )"
-            },
-            "Swashbuckle.AspNetCore": {
-              "target": "Package",
-              "version": "[5.6.3, )"
+              "version": "[1.1.3, )"
             }
           },
           "imports": [
@@ -156,9 +168,6 @@
           "assetTargetFallback": true,
           "warn": true,
           "frameworkReferences": {
-            "Microsoft.AspNetCore.App": {
-              "privateAssets": "none"
-            },
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }

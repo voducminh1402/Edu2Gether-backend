@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="IIS Web Application Name" description="" value="Edu2Gether" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^D:\\FPT\ University\\CN7\\SWD391\\Project\\Edu2Gether\.Presentation\\obj\\Release\\net5\.0\\win-x64\\PubTmp\\Out\\$" />
+  </parameter>
+</parameters>

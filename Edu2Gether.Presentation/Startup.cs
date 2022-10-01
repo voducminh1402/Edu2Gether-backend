@@ -40,9 +40,9 @@ namespace Edu2Gether.Presentation
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Edu2Gether.Presentation v1"));
             }
+            app.UseSwagger();
+            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Edu2Gether.Presentation v1"));
 
             app.UseHttpsRedirection();
 

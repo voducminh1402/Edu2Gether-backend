@@ -15,6 +15,7 @@ namespace Edu2Gether.DataAccess.Models
         {
             Courses = new HashSet<Course>();
             MentorMajors = new HashSet<MentorMajor>();
+            Slots = new HashSet<Slot>();
         }
 
         [Key]
@@ -56,5 +57,7 @@ namespace Edu2Gether.DataAccess.Models
         public virtual ICollection<Course> Courses { get; set; }
         [InverseProperty(nameof(MentorMajor.Mentor))]
         public virtual ICollection<MentorMajor> MentorMajors { get; set; }
+        [InverseProperty(nameof(Slot.Mentor))]
+        public virtual ICollection<Slot> Slots { get; set; }
     }
 }
