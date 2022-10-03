@@ -4,7 +4,7 @@ namespace Edu2Gether.BusinessLogic.Services
 {
 
     public interface IBookingService {
-    
+        
     }
 
     public class BookingService : IBookingService {

@@ -147,3 +147,10 @@ D:\FPT University\CN7\SWD391\Project\Edu2Gether.Presentation\bin\Debug\net5.0\Ed
 D:\FPT University\CN7\SWD391\Project\Edu2Gether.Presentation\bin\Debug\net5.0\Edu2Gether.DataAccess.dll
 D:\FPT University\CN7\SWD391\Project\Edu2Gether.Presentation\bin\Debug\net5.0\Edu2Gether.BusinessLogic.pdb
 D:\FPT University\CN7\SWD391\Project\Edu2Gether.Presentation\bin\Debug\net5.0\Edu2Gether.DataAccess.pdb
+D:\FPT University\CN7\SWD391\Project\Edu2Gether.Presentation\bin\Debug\net5.0\FirebaseAdmin.dll
+D:\FPT University\CN7\SWD391\Project\Edu2Gether.Presentation\bin\Debug\net5.0\Google.Api.Gax.dll
+D:\FPT University\CN7\SWD391\Project\Edu2Gether.Presentation\bin\Debug\net5.0\Google.Api.Gax.Rest.dll
+D:\FPT University\CN7\SWD391\Project\Edu2Gether.Presentation\bin\Debug\net5.0\Google.Apis.dll
+D:\FPT University\CN7\SWD391\Project\Edu2Gether.Presentation\bin\Debug\net5.0\Google.Apis.Auth.PlatformServices.dll
+D:\FPT University\CN7\SWD391\Project\Edu2Gether.Presentation\bin\Debug\net5.0\Google.Apis.Auth.dll
+D:\FPT University\CN7\SWD391\Project\Edu2Gether.Presentation\bin\Debug\net5.0\Google.Apis.Core.dll
