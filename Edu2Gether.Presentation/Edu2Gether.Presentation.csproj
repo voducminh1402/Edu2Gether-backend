@@ -27,7 +27,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
     <Folder Include="DTOs\ResponseDTOs\" />
     <Folder Include="DTOs\RequestDTOs\" />
   </ItemGroup>

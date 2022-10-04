@@ -7,6 +7,7 @@ namespace Edu2Gether.DataAccess.Repositories
 
     public partial interface ICourseRepository :IBaseRepository<Course>
     {
+
     }
     public partial class CourseRepository :BaseRepository<Course>, ICourseRepository
     {

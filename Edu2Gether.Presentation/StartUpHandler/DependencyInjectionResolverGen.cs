@@ -8,7 +8,7 @@ namespace Edu2Gether.BusinessLogic.Generations.DependencyInjection
 {
     public static class DependencyInjectionResolverGen
     {
-        public static void InitializerDependencyInjection(this IServiceCollection services)
+        public static IServiceCollection InitializerDependencyInjection(this IServiceCollection services)
         {
             services.AddScoped<DbContext, Edu2GetherContext>();
         
@@ -53,6 +53,8 @@ namespace Edu2Gether.BusinessLogic.Generations.DependencyInjection
         
             services.AddScoped<IWalletService, WalletService>();
             services.AddScoped<IWalletRepository, WalletRepository>();
+
+            return services;
         }
     }
 }
