@@ -24,6 +24,8 @@ x86/
 bld/
 bin/
 obj/
+**/bin/*
+**/obj/*
 [Bb]in/
 [Oo]bj/
 [Ll]og/
