@@ -11,7 +11,7 @@ namespace Edu2Gether.BusinessLogic.AutoMapperModule
     {
         public static void ConfigSubjectModule(this IMapperConfigurationExpression mc)
         {
-            mc.CreateMap<Subject, SubjectViewModel>().ReverseMap();
+            mc.CreateMap<Subject, SubjectResponseModel>().ReverseMap();
             mc.CreateMap<Subject, CreateSubjectRequestModel>().ReverseMap();
             mc.CreateMap<Subject, UpdateSubjectRequestModel>().ReverseMap();
         }
