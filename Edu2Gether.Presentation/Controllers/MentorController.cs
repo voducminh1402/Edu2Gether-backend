@@ -76,7 +76,7 @@ namespace Edu2Gether.Presentation.Controllers
 
             if (mentorChanged == null)
             {
-                throw new Exception("Can't change mentor with this id");
+                throw new Exception("Can't change mentor status with this id");
             }
 
             return mentorChanged;
