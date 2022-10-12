@@ -1,3 +1,4 @@
+using AutoMapper;
 using Edu2Gether.DataAccess.Repositories;
 
 namespace Edu2Gether.BusinessLogic.Services 
@@ -9,7 +10,8 @@ namespace Edu2Gether.BusinessLogic.Services
 
     public class CourseService : ICourseService {
 
-      private readonly ICourseRepository _courseRepository;
+        private readonly ICourseRepository _courseRepository;
+        private readonly IMapper _mapper;
 
         public CourseService(ICourseRepository courseRepository)
         {

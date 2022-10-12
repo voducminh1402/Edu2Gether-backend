@@ -13,4 +13,16 @@ namespace Edu2Gether.BusinessLogic.Commons
         [Display(Name = "Mentee")]
         Mentee = 4,
     }
+
+    public enum MentorStatus
+    {
+        [Display(Name = "Pending")]
+        Pending = 1,
+        [Display(Name = "Approved")]
+        Approved = 3,
+        [Display(Name = "Rejected")]
+        Rejected = 4,
+        [Display(Name = "Removed")]
+        Removed = 4,
+    }
 }
