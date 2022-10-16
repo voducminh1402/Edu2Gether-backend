@@ -11,7 +11,7 @@ namespace Edu2Gether.BusinessLogic.AutoMapperModule
     {
         public static void ConfigMenteeModule(this IMapperConfigurationExpression mc)
         {
-            mc.CreateMap<Mentee, MenteeViewModel>().ReverseMap();
+            mc.CreateMap<Mentee, MenteeResponseModel>().ReverseMap();
             mc.CreateMap<Mentee, CreateMenteeRequestModel>().ReverseMap();
             mc.CreateMap<Mentee, UpdateMenteeRequestModel>().ReverseMap();
         }

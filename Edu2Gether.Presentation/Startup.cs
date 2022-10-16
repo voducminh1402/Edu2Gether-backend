@@ -1,3 +1,5 @@
+using Edu2Gether.BusinessLogic.Generations.DependencyInjection;
+using Edu2Gether.Presentation.StartUpHandler;
 using FirebaseAdmin;
 using Google.Apis.Auth.OAuth2;
 using Microsoft.AspNetCore.Builder;
@@ -29,12 +31,13 @@ namespace Edu2Gether.Presentation
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Edu2Gether.Presentation", Version = "v1" });
             });
+            services.InitializerDependencyInjection();
+            services.ConfigureAutoMapper();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

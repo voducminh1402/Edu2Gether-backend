@@ -1,8 +1,8 @@
 
-namespace Edu2Gether.BusinessLogic.RequestModels.Mark 
+namespace Edu2Gether.BusinessLogic.ViewModels 
 {
 
-   public class CreateMarkRequestModel {
+    public class MarkResponseModel {
         public int CourseId { get; set; }
         public string MenteeId { get; set; }
     }

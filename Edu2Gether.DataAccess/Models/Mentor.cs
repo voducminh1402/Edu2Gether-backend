@@ -48,7 +48,7 @@ namespace Edu2Gether.DataAccess.Models
         [Column("WebsiteURL")]
         [StringLength(100)]
         public string WebsiteUrl { get; set; }
-        public int? ApproveStatusId { get; set; }
+        public int ApproveStatusId { get; set; }
 
         [ForeignKey(nameof(Id))]
         [InverseProperty(nameof(User.Mentor))]

@@ -7,6 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Edu2Gether.BusinessLogic.Commons;
+using Microsoft.Extensions.Configuration;
+using NTQ.Sdk.Core.CustomModel;
+using Edu2Gether.BusinessLogic.ServiceModels.ViewModels;
 
 namespace Edu2Gether.BusinessLogic.Services
 {
@@ -20,10 +23,12 @@ namespace Edu2Gether.BusinessLogic.Services
 
         private readonly IAuthenticationService _authenticationRepository;
         private readonly IUserRepository _userRepository;
+        private readonly IConfiguration _configuration;
 
-        public AuthenticationService(IAuthenticationService authenticationRepository)
+        public AuthenticationService(IAuthenticationService authenticationRepository, IConfiguration configuration)
         {
             _authenticationRepository = authenticationRepository;
+            _configuration = configuration;
         }
 
         public async Task<UserRecord> GetUserByTokenId(string tokenId)
@@ -42,54 +47,74 @@ namespace Edu2Gether.BusinessLogic.Services
             }
         }
 
-        //public async Task<dynamic> LoginByEmail(string token, string firebaseToken)
-        //{
-        //    UserRecord userRecord = null;
+        public async Task<dynamic> LoginByEmail(string token, string firebaseToken)
+        {
+            UserRecord userRecord = null;
 
-        //    try
-        //    {
-        //        userRecord = await GetUserByTokenId(token);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return new
-        //        {
-        //            response = new
-        //            {
-        //                success = false,
-        //                message = ex.Message,
-        //                status = 400
-        //            }
-        //        };
-        //    }
+            try
+            {
+                userRecord = await GetUserByTokenId(token);
+            }
+            catch (Exception ex)
+            {   
+                return new
+                {
+                    response = new
+                    {
+                        success = false,
+                        message = ex.Message,
+                        status = 400
+                    }
+                };
+            }
 
-        //    // check user exist in database
+            // check user exist in database
 
-        //    var user = _userRepository.Get(x => x.Email.Equals(userRecord.Email)).FirstOrDefault();
+            var user = _userRepository.Get(x => x.Email.Equals(userRecord.Email)).FirstOrDefault();
 
-        //    try
-        //    {
-        //        if (user == null)
-        //        {
-        //            User newUser = new User()
-        //            {
-        //                Id = userRecord.Uid,
-        //                UserName = userRecord.DisplayName,
-        //                Email = userRecord.Email,
-        //                IsActived = "Active",
-        //                RoleId = (int)UserRole.Mentee,
-        //                IsSystemAdmin = false
-        //            };
+            try
+            {
+                if (user == null)
+                {
+                    User newUser = new User()
+                    {
+                        Id = userRecord.Uid,
+                        UserName = userRecord.DisplayName,
+                        Email = userRecord.Email,
+                        IsActived = "Active",
+                        RoleId = (int)UserRole.Mentee,
+                        IsSystemAdmin = false
+                    };
 
-        //            var userAdded = _userRepository.Create(newUser);
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
+                    var userAdded = _userRepository.Create(newUser);
+                    if (userAdded != null)
+                    {
+                        var tokenLogin =
+                            TokenManager.GenerateJwtToken(string.IsNullOrEmpty(userAdded.UserName)
+                                ? ""
+                                : userAdded.UserName, userAdded.Role.RoleName, userAdded.Id, _configuration);
 
-        //    }
+                        var responseSuccess = new LoginViewModel()
+                        {
+                            AccessToken = tokenLogin,
+                            Id = userAdded.Id,
+                            Email = userAdded.Email,
+                            Name = userAdded.UserName,
+                            IsFirstLogin = true,
+                            Role = userAdded.Role.RoleName
+                        };
+                        return responseSuccess;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
 
-        //}
-    
+            return null;
+
+        }
+
     }
 }

@@ -11,7 +11,7 @@ namespace Edu2Gether.BusinessLogic.AutoMapperModule
     {
         public static void ConfigMarkModule(this IMapperConfigurationExpression mc)
         {
-            mc.CreateMap<Mark, MarkViewModel>().ReverseMap();
+            mc.CreateMap<Mark, MarkResponseModel>().ReverseMap();
             mc.CreateMap<Mark, CreateMarkRequestModel>().ReverseMap();
             mc.CreateMap<Mark, UpdateMarkRequestModel>().ReverseMap();
         }
