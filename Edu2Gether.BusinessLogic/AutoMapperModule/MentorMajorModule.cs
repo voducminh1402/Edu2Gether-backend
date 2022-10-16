@@ -11,7 +11,7 @@ namespace Edu2Gether.BusinessLogic.AutoMapperModule
     {
         public static void ConfigMentorMajorModule(this IMapperConfigurationExpression mc)
         {
-            mc.CreateMap<MentorMajor, MentorMajorViewModel>().ReverseMap();
+            mc.CreateMap<MentorMajor, MentorMajorResponseModel>().ReverseMap();
             mc.CreateMap<MentorMajor, CreateMentorMajorRequestModel>().ReverseMap();
             mc.CreateMap<MentorMajor, UpdateMentorMajorRequestModel>().ReverseMap();
         }
