@@ -68,7 +68,7 @@ namespace Edu2Gether.BusinessLogic.Services
 
             if (mentorCreated == null)
             {
-                throw new Exception("Can't create mentor! Something error!");
+                throw new Exception("Can't update mentor! Something error!");
             }
 
             return _mapper.Map<MentorResponseModel>(mentorCreated);

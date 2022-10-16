@@ -25,4 +25,5 @@ namespace Edu2Gether.BusinessLogic.Commons
         [Display(Name = "Removed")]
         Removed = 4,
     }
+
 }
