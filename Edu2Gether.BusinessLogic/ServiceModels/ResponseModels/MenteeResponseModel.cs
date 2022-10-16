@@ -1,8 +1,8 @@
 
-namespace Edu2Gether.BusinessLogic.RequestModels.Mentee 
+namespace Edu2Gether.BusinessLogic.ViewModels 
 {
 
-   public class CreateMenteeRequestModel {
+    public class MenteeResponseModel {
         public string Id { get; set; }
         public string FullName { get; set; }
         public string Phone { get; set; }
