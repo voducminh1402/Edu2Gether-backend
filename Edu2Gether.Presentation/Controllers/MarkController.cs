@@ -1,4 +1,5 @@
 ﻿using Edu2Gether.BusinessLogic.RequestModels.Mark;
+using Edu2Gether.BusinessLogic.ServiceModels.ResponseModels;
 using Edu2Gether.BusinessLogic.Services;
 using Edu2Gether.BusinessLogic.ViewModels;
 using Microsoft.AspNetCore.Mvc;
@@ -33,6 +34,13 @@ namespace Edu2Gether.Presentation.Controllers
             }
 
             return markFollowed;
+        }
+
+        [MapToApiVersion("1")]
+        [HttpGet("users/{userId}")]
+        public ActionResult<List<CourseResponseModel>> GetCourseMarkedByUser(string userId)
+        {
+            return _markService.GetCourseMarkedByUser(userId);
         }
 
         [MapToApiVersion("1")]
