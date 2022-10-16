@@ -1,8 +1,8 @@
 
-namespace Edu2Gether.BusinessLogic.RequestModels.Mentor 
+namespace Edu2Gether.BusinessLogic.ViewModels 
 {
 
-   public class UpdateMentorRequestModel {
+    public class MentorResponseModel {
         public string Id { get; set; }
         public string FullName { get; set; }
         public string Phone { get; set; }

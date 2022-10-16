@@ -25,11 +25,6 @@ namespace Edu2Gether.BusinessLogic.ServiceModels.ResponseModels
         public string IsActived { get; set; }
         public string Approver { get; set; }
         public int? ApproveStatus { get; set; }
-
-        public virtual Mentor Mentor { get; set; }
-        public virtual Subject Subject { get; set; }
-        public virtual ICollection<Booking> Bookings { get; set; }
-        public virtual ICollection<Mark> Marks { get; set; }
     }
 
 }
