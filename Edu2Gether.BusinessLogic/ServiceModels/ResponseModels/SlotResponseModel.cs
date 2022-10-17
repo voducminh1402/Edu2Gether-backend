@@ -1,10 +1,10 @@
 
 using System;
 
-namespace Edu2Gether.BusinessLogic.RequestModels.Slot 
+namespace Edu2Gether.BusinessLogic.ViewModels 
 {
 
-   public class CreateSlotRequestModel {
+    public class SlotResponseModel {
         public int Id { get; set; }
         public TimeSpan SlotStart { get; set; }
         public TimeSpan SlotEnd { get; set; }
@@ -12,6 +12,7 @@ namespace Edu2Gether.BusinessLogic.RequestModels.Slot
         public string DayInWeek { get; set; }
         public int Duration { get; set; }
         public string MentorId { get; set; }
+        public bool IsFree { get; set; }
     }
 
 }
