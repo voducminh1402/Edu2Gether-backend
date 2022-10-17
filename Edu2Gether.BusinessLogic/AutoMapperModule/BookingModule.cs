@@ -11,7 +11,7 @@ namespace Edu2Gether.BusinessLogic.AutoMapperModule
     {
         public static void ConfigBookingModule(this IMapperConfigurationExpression mc)
         {
-            mc.CreateMap<Booking, BookingViewModel>().ReverseMap();
+            mc.CreateMap<Booking, BookingResponseModel>().ReverseMap();
             mc.CreateMap<Booking, CreateBookingRequestModel>().ReverseMap();
             mc.CreateMap<Booking, UpdateBookingRequestModel>().ReverseMap();
         }

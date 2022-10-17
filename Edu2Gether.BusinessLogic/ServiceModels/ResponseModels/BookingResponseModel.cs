@@ -1,10 +1,11 @@
 
 using System;
 
-namespace Edu2Gether.BusinessLogic.RequestModels.Booking 
+namespace Edu2Gether.BusinessLogic.ViewModels 
 {
 
-   public class CreateBookingRequestModel {
+    public class BookingResponseModel {
+        public int Id { get; set; }
         public string MentorId { get; set; }
         public string MenteeId { get; set; }
         public int CourseId { get; set; }
