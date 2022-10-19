@@ -58,7 +58,7 @@ namespace Edu2Gether.Presentation.Controllers
         }
 
         [MapToApiVersion("1")]
-        [HttpGet("{date}")]
+        [HttpGet("dates/{date}")]
         public ActionResult<List<SlotResponseModel>> GetSlotInDay(string date)
         {
             DateTime checkDate = DateTime.Parse(date);

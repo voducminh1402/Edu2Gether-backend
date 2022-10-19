@@ -20,6 +20,8 @@ namespace Edu2Gether.Presentation
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
+                    webBuilder.UseIISIntegration();
+                    webBuilder.UseIIS();
                     webBuilder.UseStartup<Startup>();
                 });
     }
