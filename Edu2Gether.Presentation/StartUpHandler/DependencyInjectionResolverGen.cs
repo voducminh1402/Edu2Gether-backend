@@ -11,7 +11,9 @@ namespace Edu2Gether.BusinessLogic.Generations.DependencyInjection
         public static IServiceCollection InitializerDependencyInjection(this IServiceCollection services)
         {
             services.AddScoped<DbContext, Edu2GetherContext>();
-        
+
+            services.AddScoped<IAuthenticationService, AuthenticationService>();
+
             services.AddScoped<IBookingService, BookingService>();
             services.AddScoped<IBookingRepository, BookingRepository>();
         

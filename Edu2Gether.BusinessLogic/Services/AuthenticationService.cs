@@ -16,19 +16,19 @@ namespace Edu2Gether.BusinessLogic.Services
     public interface IAuthenticationService
     {
         Task<UserRecord> GetUserByTokenId(string tokenId);
+        Task<dynamic> LoginByEmail(string token, string firebaseToken);
     }
 
     public class AuthenticationService : IAuthenticationService
     {
 
-        private readonly IAuthenticationService _authenticationRepository;
         private readonly IUserRepository _userRepository;
         private readonly IConfiguration _configuration;
 
-        public AuthenticationService(IAuthenticationService authenticationRepository, IConfiguration configuration)
+        public AuthenticationService(IConfiguration configuration, IUserRepository userRepository)
         {
-            _authenticationRepository = authenticationRepository;
             _configuration = configuration;
+            _userRepository = userRepository;
         }
 
         public async Task<UserRecord> GetUserByTokenId(string tokenId)
