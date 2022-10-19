@@ -1,8 +1,8 @@
 
-namespace Edu2Gether.BusinessLogic.RequestModels.Payment 
+namespace Edu2Gether.BusinessLogic.ViewModels 
 {
 
-   public class CreatePaymentRequestModel {
+    public class PaymentResponseModel {
         public int Id { get; set; }
         public int BookingId { get; set; }
         public decimal TotalPrice { get; set; }

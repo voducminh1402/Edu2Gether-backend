@@ -11,7 +11,7 @@ namespace Edu2Gether.BusinessLogic.AutoMapperModule
     {
         public static void ConfigPaymentModule(this IMapperConfigurationExpression mc)
         {
-            mc.CreateMap<Payment, PaymentViewModel>().ReverseMap();
+            mc.CreateMap<Payment, PaymentResponseModel>().ReverseMap();
             mc.CreateMap<Payment, CreatePaymentRequestModel>().ReverseMap();
             mc.CreateMap<Payment, UpdatePaymentRequestModel>().ReverseMap();
         }
