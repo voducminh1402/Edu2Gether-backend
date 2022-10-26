@@ -1,6 +1,7 @@
 ﻿using Edu2Gether.BusinessLogic.RequestModels.Slot;
 using Edu2Gether.BusinessLogic.Services;
 using Edu2Gether.BusinessLogic.ViewModels;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,7 @@ using System.Threading.Tasks;
 namespace Edu2Gether.Presentation.Controllers
 {
     [ApiController]
+    [EnableCors("AllowAnyOrigins")]
     [ApiVersion("1")]
     [Route("api/v1/slots")]
     public class SlotController : ControllerBase

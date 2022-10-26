@@ -17,16 +17,19 @@ namespace Edu2Gether.BusinessLogic.Services
         MentorResponseModel CreateMentor(CreateMentorRequestModel mentor);
         MentorResponseModel UpdateMentor(UpdateMentorRequestModel mentorUpdate);
         MentorResponseModel ChangeStatusMentor(int statusId, string mentorId);
+        decimal GetMentorRating(string mentorId); 
     }
 
     public class MentorService : IMentorService {
 
         private readonly IMentorRepository _mentorRepository;
+        private readonly IBookingRepository _bookingRepository;
         private readonly IMapper _mapper;
 
-        public MentorService(IMentorRepository mentorRepository, IMapper mapper)
+        public MentorService(IMentorRepository mentorRepository, IMapper mapper, IBookingRepository bookingRepository)
         {
             _mentorRepository = mentorRepository;
+            _bookingRepository = bookingRepository;
             _mapper = mapper;
         }
 
@@ -89,6 +92,18 @@ namespace Edu2Gether.BusinessLogic.Services
             return null;
         }
 
+        public decimal GetMentorRating(string mentorId)
+        {
+            int numberRating = _bookingRepository.Get().Where(x => x.MentorId.Equals(mentorId)).Select(y => y.Id).Count();
+            int totalRating = _bookingRepository.Get().Where(x => x.MentorId.Equals(mentorId) && x.Rating.HasValue).Sum(x => x.Rating.Value);
+
+            if (totalRating <= 0 || numberRating <= 0)
+            {
+                return -1;
+            }
+
+            return Math.Round((decimal) numberRating / totalRating, 2);
+        }
     }
 
 }

@@ -1,6 +1,7 @@
 ﻿using Edu2Gether.BusinessLogic.RequestModels.Course;
 using Edu2Gether.BusinessLogic.ServiceModels.ResponseModels;
 using Edu2Gether.BusinessLogic.Services;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 
@@ -8,6 +9,7 @@ namespace Edu2Gether.Presentation.Controllers
 {
 
     [ApiController]
+    [EnableCors("AllowAnyOrigins")]
     [ApiVersion("1")]
     [Route("api/v1/courses")]
     public class CourseController : ControllerBase

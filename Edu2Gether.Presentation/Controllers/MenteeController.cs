@@ -1,6 +1,7 @@
 ﻿using Edu2Gether.BusinessLogic.RequestModels.Mentee;
 using Edu2Gether.BusinessLogic.Services;
 using Edu2Gether.BusinessLogic.ViewModels;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,7 @@ using System.Threading.Tasks;
 namespace Edu2Gether.Presentation.Controllers
 {
     [ApiController]
+    [EnableCors("AllowAnyOrigins")]
     [ApiVersion("1")]
     [Route("api/v1/mentees")]
     public class MenteeController : ControllerBase
@@ -29,7 +31,7 @@ namespace Edu2Gether.Presentation.Controllers
         }
 
         [MapToApiVersion("1")]
-        [HttpGet("{mentorId}")]
+        [HttpGet("{menteeId}")]
         public ActionResult<MenteeResponseModel> GetMenteeById(string menteeId)
         {
             var mentee = _menteeService.GetMenteeById(menteeId);

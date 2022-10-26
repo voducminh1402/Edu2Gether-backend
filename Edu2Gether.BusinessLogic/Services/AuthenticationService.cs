@@ -87,6 +87,7 @@ namespace Edu2Gether.BusinessLogic.Services
                     };
 
                     var userAdded = _userRepository.Create(newUser);
+                    _userRepository.Save();
                     if (userAdded != null)
                     {
                         var tokenLogin =
