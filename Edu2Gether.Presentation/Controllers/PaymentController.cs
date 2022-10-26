@@ -1,6 +1,7 @@
 ﻿using Edu2Gether.BusinessLogic.RequestModels.Payment;
 using Edu2Gether.BusinessLogic.Services;
 using Edu2Gether.BusinessLogic.ViewModels;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,7 @@ using System.Threading.Tasks;
 namespace Edu2Gether.Presentation.Controllers
 {
     [ApiController]
+    [EnableCors("AllowAnyOrigins")]
     [ApiVersion("1")]
     [Route("api/v1/payments")]
     public class PaymentController : ControllerBase
@@ -65,6 +67,19 @@ namespace Edu2Gether.Presentation.Controllers
         public ActionResult<List<PaymentResponseModel>> GetPaymentsByUser(string userId)
         {
             var payments = _paymentService.GetPaymentByUser(userId);
+
+            if (payments == null)
+            {
+                return NotFound("Can't get payment!");
+            }
+            return Ok(payments);
+        }
+
+        [MapToApiVersion("1")]
+        [HttpGet("{paymentId}")]
+        public ActionResult<List<PaymentResponseModel>> GetPayments(int paymentId)
+        {
+            var payments = _paymentService.FindPaymentById(paymentId);
 
             if (payments == null)
             {

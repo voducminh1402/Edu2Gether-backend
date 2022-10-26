@@ -1,10 +1,11 @@
 
 using System;
 
-namespace Edu2Gether.BusinessLogic.RequestModels.Transaction 
+namespace Edu2Gether.BusinessLogic.ViewModels 
 {
 
-   public class CreateTransactionRequestModel {
+    public class TransactionResponseModel {
+        public int Id { get; set; }
         public DateTime CreatedTime { get; set; }
         public DateTime? UpdatedTime { get; set; }
         public int PaymentId { get; set; }

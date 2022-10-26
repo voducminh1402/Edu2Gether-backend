@@ -103,6 +103,7 @@ namespace Edu2Gether.BusinessLogic.Services
         {
             var courseTmp = _mapper.Map<Course>(course);
             var courseUpdated = _courseRepository.Update(courseTmp);
+            _courseRepository.Save();
 
             if (courseUpdated != null)
             {
