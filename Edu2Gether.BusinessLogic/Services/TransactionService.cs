@@ -19,11 +19,13 @@ namespace Edu2Gether.BusinessLogic.Services
     public class TransactionService : ITransactionService {
 
         private readonly ITransactionRepository _transactionRepository;
+        private readonly IWalletRepository _walletRepository;
         private readonly IMapper _mapper;
 
-        public TransactionService(ITransactionRepository transactionRepository, IMapper mapper)
+        public TransactionService(ITransactionRepository transactionRepository, IMapper mapper, IWalletRepository walletRepository)
         {
             _transactionRepository = transactionRepository;
+            _walletRepository = walletRepository;
             _mapper = mapper;
         }
 
@@ -55,13 +57,29 @@ namespace Edu2Gether.BusinessLogic.Services
 
         public List<TransactionResponseModel> GetTransactionByUser(string userId)
         {
-            var transactions = _transactionRepository.Get().Where(x => x.WalletId.Equals(userId)).ToList();
+            var transactions = _transactionRepository.Get().ToList();
+            List<Transaction> returnTransactionTmp = new List<Transaction>();
+            List<Transaction> returnTransactions = new List<Transaction>();
+
+            foreach (var item in transactions)
+            {
+                item.Wallet = _walletRepository.Get().Where(x => x.Id == item.WalletId).FirstOrDefault();
+                returnTransactionTmp.Add(item);
+            }
+
+            foreach (var itemReturn in returnTransactionTmp)
+            {
+                if (itemReturn.Wallet.UserId.Equals(userId))
+                {
+                    returnTransactions.Add(itemReturn);
+                }
+            }
 
             if (transactions == null)
             {
                 return null;
             }
-            return _mapper.Map<List<TransactionResponseModel>>(transactions);
+            return _mapper.Map<List<TransactionResponseModel>>(returnTransactions);
         }
 
         public List<TransactionResponseModel> GetTransactions()

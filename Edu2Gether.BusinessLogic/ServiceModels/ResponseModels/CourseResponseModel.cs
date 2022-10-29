@@ -1,4 +1,5 @@
 
+using Edu2Gether.BusinessLogic.ViewModels;
 using Edu2Gether.DataAccess.Models;
 using System;
 using System.Collections.Generic;
@@ -25,6 +26,8 @@ namespace Edu2Gether.BusinessLogic.ServiceModels.ResponseModels
         public string IsActived { get; set; }
         public string Approver { get; set; }
         public int? ApproveStatus { get; set; }
+        public SubjectResponseModel Subject { get; set; }
+        public MajorResponseModel Major { get; set; }
     }
 
 }

@@ -56,7 +56,7 @@ namespace Edu2Gether.BusinessLogic.Services
 
         public PaymentResponseModel FindPaymentById(int id)
         {
-            var payments = _paymentRepository.Get().Where(x => x.Id == id).ToList();
+            var payments = _paymentRepository.Get().Where(x => x.Id == id).FirstOrDefault();
 
             return _mapper.Map<PaymentResponseModel>(payments);
         }
