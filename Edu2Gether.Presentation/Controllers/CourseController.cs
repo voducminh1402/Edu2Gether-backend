@@ -9,7 +9,6 @@ namespace Edu2Gether.Presentation.Controllers
 {
 
     [ApiController]
-    [EnableCors("AllowAnyOrigins")]
     [ApiVersion("1")]
     [Route("api/v1/courses")]
     public class CourseController : ControllerBase
@@ -23,7 +22,7 @@ namespace Edu2Gether.Presentation.Controllers
 
         [MapToApiVersion("1")]
         [HttpGet("{courseId}")]
-        public ActionResult<CourseResponseModel> GetCourseById(string courseId)
+        public ActionResult<CourseResponseModel> GetCourseById(int courseId)
         {
             var course = _courseService.GetCourseById(courseId);
 
@@ -50,7 +49,7 @@ namespace Edu2Gether.Presentation.Controllers
         }
 
         [MapToApiVersion("1")]
-        [HttpGet("{mentorId}")]
+        [HttpGet("mentors/{mentorId}")]
         public ActionResult<List<CourseResponseModel>> GetCourseByMentor(string mentorId)
         {
             var courses = _courseService.GetCourseByMentor(mentorId);
@@ -106,7 +105,7 @@ namespace Edu2Gether.Presentation.Controllers
         }
 
         [MapToApiVersion("1")]
-        [HttpGet("{subjectId}")]
+        [HttpGet("subjects/{subjectId}")]
         public ActionResult<List<CourseResponseModel>> GetCourseBySubject(int subjectId)
         {
             var courses = _courseService.GetCourseBySubject(subjectId);

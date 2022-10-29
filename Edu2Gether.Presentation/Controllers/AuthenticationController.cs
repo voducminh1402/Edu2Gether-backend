@@ -10,7 +10,6 @@ using System.Threading.Tasks;
 namespace Edu2Gether.Presentation.Controllers
 {
     [ApiController]
-    [EnableCors("AllowAnyOrigins")]
     [ApiVersion("1")]
     [Route("api/v1/authentication")]
     public class AuthenticationController : ControllerBase
