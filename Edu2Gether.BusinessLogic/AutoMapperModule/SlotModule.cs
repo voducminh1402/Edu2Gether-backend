@@ -11,7 +11,7 @@ namespace Edu2Gether.BusinessLogic.AutoMapperModule
     {
         public static void ConfigSlotModule(this IMapperConfigurationExpression mc)
         {
-            mc.CreateMap<Slot, SlotViewModel>().ReverseMap();
+            mc.CreateMap<Slot, SlotResponseModel>().ReverseMap();
             mc.CreateMap<Slot, CreateSlotRequestModel>().ReverseMap();
             mc.CreateMap<Slot, UpdateSlotRequestModel>().ReverseMap();
         }

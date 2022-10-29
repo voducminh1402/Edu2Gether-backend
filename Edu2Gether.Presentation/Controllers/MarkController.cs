@@ -2,6 +2,7 @@
 using Edu2Gether.BusinessLogic.ServiceModels.ResponseModels;
 using Edu2Gether.BusinessLogic.Services;
 using Edu2Gether.BusinessLogic.ViewModels;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;

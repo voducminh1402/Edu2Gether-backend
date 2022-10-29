@@ -36,6 +36,7 @@ namespace Edu2Gether.Presentation
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Edu2Gether.Presentation", Version = "v1" });
             });
+            services.AddCors();
             services.InitializerDependencyInjection();
             services.ConfigureAutoMapper();
         }
@@ -59,6 +60,13 @@ namespace Edu2Gether.Presentation
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors(builder => builder
+                .AllowAnyHeader()
+                .AllowAnyMethod()
+                .SetIsOriginAllowed(origin => true)
+                .AllowCredentials()
+            );
 
             app.UseAuthorization();
 

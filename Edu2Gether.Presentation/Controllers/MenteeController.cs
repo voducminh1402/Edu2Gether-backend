@@ -1,6 +1,7 @@
 ﻿using Edu2Gether.BusinessLogic.RequestModels.Mentee;
 using Edu2Gether.BusinessLogic.Services;
 using Edu2Gether.BusinessLogic.ViewModels;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -29,7 +30,7 @@ namespace Edu2Gether.Presentation.Controllers
         }
 
         [MapToApiVersion("1")]
-        [HttpGet("{mentorId}")]
+        [HttpGet("{menteeId}")]
         public ActionResult<MenteeResponseModel> GetMenteeById(string menteeId)
         {
             var mentee = _menteeService.GetMenteeById(menteeId);

@@ -2,6 +2,7 @@ using AutoMapper;
 using Edu2Gether.BusinessLogic.Commons;
 using Edu2Gether.BusinessLogic.RequestModels.Course;
 using Edu2Gether.BusinessLogic.ServiceModels.ResponseModels;
+using Edu2Gether.BusinessLogic.ViewModels;
 using Edu2Gether.DataAccess.Models;
 using Edu2Gether.DataAccess.Repositories;
 using System.Collections.Generic;
@@ -12,7 +13,7 @@ namespace Edu2Gether.BusinessLogic.Services
     public interface ICourseService {
         List<CourseResponseModel> GetCourses();
         List<CourseResponseModel> GetCourseByMentor(string mentorId);
-        CourseResponseModel GetCourseById(string id);
+        CourseResponseModel GetCourseById(int id);
         CourseResponseModel CreateCourse(CreateCourseRequestModel course);
         CourseResponseModel UpdateCourse(UpdateCourseRequestModel course);
         CourseResponseModel DeleteCourse(string id);
@@ -22,11 +23,15 @@ namespace Edu2Gether.BusinessLogic.Services
     public class CourseService : ICourseService {
 
         private readonly ICourseRepository _courseRepository;
+        private readonly ISubjectRepository _subjectRepository;
+        private readonly IMajorRepository _majorRepository;
         private readonly IMapper _mapper;
 
-        public CourseService(ICourseRepository courseRepository, IMapper mapper)
+        public CourseService(ICourseRepository courseRepository, IMapper mapper, ISubjectRepository subjectRepository, IMajorRepository majorRepository)
         {
             _courseRepository = courseRepository;
+            _subjectRepository = subjectRepository;
+            _majorRepository = majorRepository;
             _mapper = mapper;
         }
 
@@ -51,13 +56,16 @@ namespace Edu2Gether.BusinessLogic.Services
             return null;
         }
 
-        public CourseResponseModel GetCourseById(string id)
+        public CourseResponseModel GetCourseById(int id)
         {
-            var course = _courseRepository.Get().Where(x => x.Id.Equals(id)).FirstOrDefault();
+            var course = _courseRepository.Get().Where(x => x.Id == id).FirstOrDefault();
 
             if (course != null)
             {
-                return _mapper.Map<CourseResponseModel>(course);
+                var courseRes = _mapper.Map<CourseResponseModel>(course);
+                courseRes.Subject = _mapper.Map<SubjectResponseModel>(_subjectRepository.Get().Where(x => x.Id == courseRes.SubjectId).FirstOrDefault());
+                courseRes.Major = _mapper.Map<MajorResponseModel>(_majorRepository.Get().Where(x => x.Id == courseRes.Subject.MajorId).FirstOrDefault());
+                return courseRes;
             }
 
             return null;
@@ -93,7 +101,17 @@ namespace Edu2Gether.BusinessLogic.Services
 
             if (courses != null)
             {
-                return _mapper.Map<List<CourseResponseModel>>(courses);
+                var courseRes = _mapper.Map<List<CourseResponseModel>>(courses);
+                List<CourseResponseModel> returnCourse = new List<CourseResponseModel>();
+
+                foreach (var item in courseRes)
+                {
+                    item.Subject = _mapper.Map<SubjectResponseModel>(_subjectRepository.Get().Where(x => x.Id == item.SubjectId).FirstOrDefault());
+                    item.Major = _mapper.Map<MajorResponseModel>(_majorRepository.Get().Where(x => x.Id == item.Subject.MajorId).FirstOrDefault());
+                    returnCourse.Add(item);
+                }
+
+                return returnCourse;
             }
 
             return null;
@@ -103,6 +121,7 @@ namespace Edu2Gether.BusinessLogic.Services
         {
             var courseTmp = _mapper.Map<Course>(course);
             var courseUpdated = _courseRepository.Update(courseTmp);
+            _courseRepository.Save();
 
             if (courseUpdated != null)
             {

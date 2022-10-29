@@ -11,7 +11,7 @@ namespace Edu2Gether.BusinessLogic.AutoMapperModule
     {
         public static void ConfigTransactionModule(this IMapperConfigurationExpression mc)
         {
-            mc.CreateMap<Transaction, TransactionViewModel>().ReverseMap();
+            mc.CreateMap<Transaction, TransactionResponseModel>().ReverseMap();
             mc.CreateMap<Transaction, CreateTransactionRequestModel>().ReverseMap();
             mc.CreateMap<Transaction, UpdateTransactionRequestModel>().ReverseMap();
         }

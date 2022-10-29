@@ -1,6 +1,7 @@
 ﻿using Edu2Gether.BusinessLogic.RequestModels.Course;
 using Edu2Gether.BusinessLogic.ServiceModels.ResponseModels;
 using Edu2Gether.BusinessLogic.Services;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 
@@ -21,7 +22,7 @@ namespace Edu2Gether.Presentation.Controllers
 
         [MapToApiVersion("1")]
         [HttpGet("{courseId}")]
-        public ActionResult<CourseResponseModel> GetCourseById(string courseId)
+        public ActionResult<CourseResponseModel> GetCourseById(int courseId)
         {
             var course = _courseService.GetCourseById(courseId);
 
@@ -48,7 +49,7 @@ namespace Edu2Gether.Presentation.Controllers
         }
 
         [MapToApiVersion("1")]
-        [HttpGet("{mentorId}")]
+        [HttpGet("mentors/{mentorId}")]
         public ActionResult<List<CourseResponseModel>> GetCourseByMentor(string mentorId)
         {
             var courses = _courseService.GetCourseByMentor(mentorId);
@@ -104,7 +105,7 @@ namespace Edu2Gether.Presentation.Controllers
         }
 
         [MapToApiVersion("1")]
-        [HttpGet("{subjectId}")]
+        [HttpGet("subjects/{subjectId}")]
         public ActionResult<List<CourseResponseModel>> GetCourseBySubject(int subjectId)
         {
             var courses = _courseService.GetCourseBySubject(subjectId);
