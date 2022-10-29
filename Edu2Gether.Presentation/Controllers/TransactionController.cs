@@ -11,7 +11,6 @@ using System.Threading.Tasks;
 namespace Edu2Gether.Presentation.Controllers
 {
     [ApiController]
-    [EnableCors("AllowAnyOrigins")]
     [ApiVersion("1")]
     [Route("api/v1/transactions")]
     public class TransactionController : ControllerBase
@@ -24,7 +23,7 @@ namespace Edu2Gether.Presentation.Controllers
         }
 
         [MapToApiVersion("1")]
-        [HttpGet("{userId}")]
+        [HttpGet("users/{userId}")]
         public ActionResult<List<TransactionResponseModel>> GetTransactionByUser(string userId)
         {
             var transactions = _transactionService.GetTransactionByUser(userId);
