@@ -33,7 +33,7 @@ namespace Edu2Gether.Presentation.Controllers
                 return NotFound("Can't create mentor with this major!");
             }
 
-            return mentorMajorCreated;
+            return StatusCode(201, mentorMajorCreated);
         }
 
         [MapToApiVersion("1")]

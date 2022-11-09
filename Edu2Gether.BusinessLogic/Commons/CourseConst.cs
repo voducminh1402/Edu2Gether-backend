@@ -10,6 +10,6 @@ namespace Edu2Gether.BusinessLogic.Commons
     {
         public static readonly string PENDING = "Pending";
         public static readonly string REMOVED = "Removed";
-        public static readonly string APPROVE = "Approve";
+        public static readonly string APPROVE = "Approved";
     }
 }

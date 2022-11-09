@@ -18,6 +18,11 @@ namespace Edu2Gether.BusinessLogic.Services
         CourseResponseModel UpdateCourse(UpdateCourseRequestModel course);
         CourseResponseModel DeleteCourse(string id);
         List<CourseResponseModel> GetCourseBySubject(int subjectId);
+        List<CourseResponseModel> GetCourseByName(string name);
+        List<CourseResponseModel> GetCourseByMajorName(string majorName);
+        List<CourseResponseModel> GetOnGoingCourse();
+        List<CourseResponseModel> GetCompletedCourse();
+        List<CourseResponseModel> GetCourseBySubjectName(string subjectName);
     }
 
     public class CourseService : ICourseService {
@@ -25,13 +30,15 @@ namespace Edu2Gether.BusinessLogic.Services
         private readonly ICourseRepository _courseRepository;
         private readonly ISubjectRepository _subjectRepository;
         private readonly IMajorRepository _majorRepository;
+        private readonly IMentorRepository _mentorRepository;
         private readonly IMapper _mapper;
 
-        public CourseService(ICourseRepository courseRepository, IMapper mapper, ISubjectRepository subjectRepository, IMajorRepository majorRepository)
+        public CourseService(ICourseRepository courseRepository, IMapper mapper, ISubjectRepository subjectRepository, IMajorRepository majorRepository, IMentorRepository mentorRepository)
         {
             _courseRepository = courseRepository;
             _subjectRepository = subjectRepository;
             _majorRepository = majorRepository;
+            _mentorRepository = mentorRepository;
             _mapper = mapper;
         }
 
@@ -63,6 +70,7 @@ namespace Edu2Gether.BusinessLogic.Services
             if (course != null)
             {
                 var courseRes = _mapper.Map<CourseResponseModel>(course);
+                courseRes.Mentor = _mapper.Map<MentorResponseModel>(_mentorRepository.Get().Where(x => x.Id.Equals(courseRes.MentorId)).FirstOrDefault());
                 courseRes.Subject = _mapper.Map<SubjectResponseModel>(_subjectRepository.Get().Where(x => x.Id == courseRes.SubjectId).FirstOrDefault());
                 courseRes.Major = _mapper.Map<MajorResponseModel>(_majorRepository.Get().Where(x => x.Id == courseRes.Subject.MajorId).FirstOrDefault());
                 return courseRes;
@@ -106,6 +114,7 @@ namespace Edu2Gether.BusinessLogic.Services
 
                 foreach (var item in courseRes)
                 {
+                    item.Mentor = _mapper.Map<MentorResponseModel>(_mentorRepository.Get().Where(x => x.Id.Equals(item.MentorId)).FirstOrDefault());
                     item.Subject = _mapper.Map<SubjectResponseModel>(_subjectRepository.Get().Where(x => x.Id == item.SubjectId).FirstOrDefault());
                     item.Major = _mapper.Map<MajorResponseModel>(_majorRepository.Get().Where(x => x.Id == item.Subject.MajorId).FirstOrDefault());
                     returnCourse.Add(item);
@@ -129,6 +138,46 @@ namespace Edu2Gether.BusinessLogic.Services
             }
 
             return null;
+        }
+
+        public List<CourseResponseModel> GetCourseByName(string name)
+        {
+            List<Course> courses = new List<Course>();
+            courses = _courseRepository.Get().Where(x => x.Name.ToLower().Contains(name.ToLower())).ToList();
+
+            return _mapper.Map<List<CourseResponseModel>>(courses);
+        }
+
+        public List<CourseResponseModel> GetCourseByMajorName(string majorName)
+        {
+            var courses = GetCourses();
+            courses = courses.Where(x => x.Major.Name.ToLower().Contains(majorName.ToLower())).ToList();
+
+            return _mapper.Map<List<CourseResponseModel>>(courses);
+        }
+
+        public List<CourseResponseModel> GetOnGoingCourse()
+        {
+            List<Course> courses = new List<Course>();
+            courses = _courseRepository.Get().Where(x => x.IsActived.ToLower().Contains("on going")).ToList();
+
+            return _mapper.Map<List<CourseResponseModel>>(courses);
+        }
+
+        public List<CourseResponseModel> GetCompletedCourse()
+        {
+            List<Course> courses = new List<Course>();
+            courses = _courseRepository.Get().Where(x => x.IsActived.ToLower().Contains("completed")).ToList();
+
+            return _mapper.Map<List<CourseResponseModel>>(courses);
+        }
+
+        public List<CourseResponseModel> GetCourseBySubjectName(string subjectName)
+        {
+            var courses = GetCourses();
+            courses = courses.Where(x => x.Subject.Name.ToLower().Contains(subjectName.ToLower())).ToList();
+
+            return _mapper.Map<List<CourseResponseModel>>(courses);
         }
     }
 

@@ -55,9 +55,11 @@ namespace Edu2Gether.Presentation.Controllers
 
         [MapToApiVersion("1")]
         [HttpPost]
-        public ActionResult<SubjectResponseModel> CreateSubject(CreateSubjectRequestModel subject)
+        public ActionResult<SubjectResponseModel> CreateSubject([FromForm] CreateSubjectRequestModel subject)
         {
-            return _subjectService.CreateSubject(subject);
+            var subjectAdded = _subjectService.CreateSubject(subject);
+
+            return StatusCode(201, subjectAdded);
         }
 
     }

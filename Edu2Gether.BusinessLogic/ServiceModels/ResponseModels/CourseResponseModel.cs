@@ -28,6 +28,7 @@ namespace Edu2Gether.BusinessLogic.ServiceModels.ResponseModels
         public int? ApproveStatus { get; set; }
         public SubjectResponseModel Subject { get; set; }
         public MajorResponseModel Major { get; set; }
+        public MentorResponseModel Mentor { get; set; }
     }
 
 }

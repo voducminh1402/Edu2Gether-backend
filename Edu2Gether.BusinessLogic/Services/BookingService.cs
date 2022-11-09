@@ -4,6 +4,7 @@ using Edu2Gether.BusinessLogic.RequestModels.Booking;
 using Edu2Gether.BusinessLogic.ViewModels;
 using Edu2Gether.DataAccess.Models;
 using Edu2Gether.DataAccess.Repositories;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -50,6 +51,7 @@ namespace Edu2Gether.BusinessLogic.Services
         public BookingResponseModel CreateBooking(CreateBookingRequestModel booking)
         {
             var bookingCreated = _bookingRepository.Create(_mapper.Map<Booking>(booking));
+            _bookingRepository.Save();
 
             if (bookingCreated == null)
             {
@@ -61,19 +63,30 @@ namespace Edu2Gether.BusinessLogic.Services
 
         public List<BookingResponseModel> ViewAllBooking()
         {
-            return _mapper.Map<List<BookingResponseModel>>(_bookingRepository.Get());
+            var bookings = _bookingRepository.Get()
+                                            .Include(x => x.Mentee)
+                                            .Include(x => x.Course)
+                                            .ThenInclude(x => x.Mentor).ToList();
+
+            return _mapper.Map<List<BookingResponseModel>>(bookings);
         }
 
         public BookingResponseModel ViewBookingById(int bookingId)
         {
-            var booking = _bookingRepository.Get().Where(X => X.Id == bookingId);
+            var booking = _bookingRepository.Get()
+                                            .Include(x => x.Mentee)
+                                            .Include(x => x.Course)
+                                            .ThenInclude(x => x.Mentor).Where(X => X.Id == bookingId).FirstOrDefault();
 
             return _mapper.Map<BookingResponseModel>(booking);
         }
 
         public List<BookingResponseModel> ViewBookingByMentee(string menteeId)
         {
-            var booking = _bookingRepository.Get().Where(X => X.MenteeId.Equals(menteeId));
+            var booking = _bookingRepository.Get()
+                                            .Include(x => x.Mentee)
+                                            .Include(x => x.Course)
+                                            .ThenInclude(x => x.Mentor).Where(X => X.MenteeId.Equals(menteeId));
 
 
             return _mapper.Map<List<BookingResponseModel>>(booking);
@@ -81,7 +94,10 @@ namespace Edu2Gether.BusinessLogic.Services
 
         public List<BookingResponseModel> ViewBookingByMentor(string mentorId)
         {
-            var booking = _bookingRepository.Get().Where(X => X.MentorId.Equals(mentorId));
+            var booking = _bookingRepository.Get()
+                                            .Include(x => x.Mentee)
+                                            .Include(x => x.Course)
+                                            .ThenInclude(x => x.Mentor).Where(X => X.MentorId.Equals(mentorId));
 
 
             return _mapper.Map<List<BookingResponseModel>>(booking);

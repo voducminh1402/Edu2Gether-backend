@@ -32,7 +32,7 @@ namespace Edu2Gether.Presentation.Controllers
             {
                 return NotFound("Can't create payment!");
             }
-            return Ok(paymentAdded);
+            return StatusCode(201, paymentAdded);
         }
 
         [MapToApiVersion("1")]

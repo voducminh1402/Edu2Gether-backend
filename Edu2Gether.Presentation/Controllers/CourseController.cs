@@ -3,6 +3,7 @@ using Edu2Gether.BusinessLogic.ServiceModels.ResponseModels;
 using Edu2Gether.BusinessLogic.Services;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 
 namespace Edu2Gether.Presentation.Controllers
@@ -35,6 +36,76 @@ namespace Edu2Gether.Presentation.Controllers
         }
 
         [MapToApiVersion("1")]
+        [HttpGet("course")]
+        public ActionResult<List<CourseResponseModel>> GetCourseByName([FromQuery] string name)
+        {
+            var courses = _courseService.GetCourseByName(name);
+
+            if (courses == null)
+            {
+                throw new Exception("Can't found mentor with this name");
+            }
+
+            return courses;
+        }
+
+        [MapToApiVersion("1")]
+        [HttpGet("major")]
+        public ActionResult<List<CourseResponseModel>> GetCourseByMajorName([FromQuery] string majorName)
+        {
+            var courses = _courseService.GetCourseByMajorName(majorName);
+
+            if (courses == null)
+            {
+                throw new Exception("Can't found mentor with this major name");
+            }
+
+            return courses;
+        }
+
+        [MapToApiVersion("1")]
+        [HttpGet("course/on-going")]
+        public ActionResult<List<CourseResponseModel>> GetOnGoingCourse()
+        {
+            var courses = _courseService.GetOnGoingCourse();
+
+            if (courses == null)
+            {
+                throw new Exception("Can't found courses");
+            }
+
+            return courses;
+        }
+
+        [MapToApiVersion("1")]
+        [HttpGet("course/completed")]
+        public ActionResult<List<CourseResponseModel>> GetCompletedCourse()
+        {
+            var courses = _courseService.GetCompletedCourse();
+
+            if (courses == null)
+            {
+                throw new Exception("Can't found courses");
+            }
+
+            return courses;
+        }
+
+        [MapToApiVersion("1")]
+        [HttpGet("get-course-subject-name/{subjectName}")]
+        public ActionResult<List<CourseResponseModel>> GetCourseBySubjectName(string subjectName)
+        {
+            var courses = _courseService.GetCourseBySubjectName(subjectName);
+
+            if (courses == null)
+            {
+                throw new Exception("Can't found courses");
+            }
+
+            return courses;
+        }
+
+        [MapToApiVersion("1")]
         [HttpGet]
         public ActionResult<List<CourseResponseModel>> GetCourses()
         {
@@ -64,7 +135,7 @@ namespace Edu2Gether.Presentation.Controllers
 
         [MapToApiVersion("1")]
         [HttpPost]
-        public ActionResult<CourseResponseModel> CreateCourse(CreateCourseRequestModel course)
+        public ActionResult<CourseResponseModel> CreateCourse([FromForm] CreateCourseRequestModel course)
         {
             var courseCreated = _courseService.CreateCourse(course);
 
@@ -73,12 +144,12 @@ namespace Edu2Gether.Presentation.Controllers
                 return NotFound("Can't create this course!");
             }
 
-            return courseCreated;
+            return StatusCode(201, courseCreated);
         }
 
         [MapToApiVersion("1")]
         [HttpPatch]
-        public ActionResult<CourseResponseModel> UpdateCourse(UpdateCourseRequestModel course)
+        public ActionResult<CourseResponseModel> UpdateCourse([FromForm] UpdateCourseRequestModel course)
         {
             var courseUpdated = _courseService.UpdateCourse(course);
 
@@ -87,12 +158,12 @@ namespace Edu2Gether.Presentation.Controllers
                 return NotFound("Can't update this course!");
             }
 
-            return courseUpdated;
+            return StatusCode(200, courseUpdated);
         }
 
         [MapToApiVersion("1")]
         [HttpPost("{courseId}")]
-        public ActionResult<CourseResponseModel> DeleteCourse(string courseId)
+        public ActionResult<CourseResponseModel> DeleteCourse([FromForm] string courseId)
         {
             var courseDeleted = _courseService.DeleteCourse(courseId);
 
@@ -101,7 +172,7 @@ namespace Edu2Gether.Presentation.Controllers
                 return NotFound("Can't create this course!");
             }
 
-            return courseDeleted;
+            return StatusCode(200, courseDeleted);
         }
 
         [MapToApiVersion("1")]

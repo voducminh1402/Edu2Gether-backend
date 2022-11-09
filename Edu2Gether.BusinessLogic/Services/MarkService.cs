@@ -15,6 +15,7 @@ namespace Edu2Gether.BusinessLogic.Services
         MarkResponseModel MarkCourse(CreateMarkRequestModel markModel);
         MarkResponseModel UnMarkCourse(UpdateMarkRequestModel markModel);
         List<CourseResponseModel> GetCourseMarkedByUser(string userId);
+        MarkResponseModel CheckExistInMark(string menteeId, int courseId);
     }
 
     public class MarkService : IMarkService {
@@ -65,16 +66,30 @@ namespace Edu2Gether.BusinessLogic.Services
 
         public MarkResponseModel UnMarkCourse(UpdateMarkRequestModel markModel)
         {
-            _markRepository.Delete(_mapper.Map<Mark>(markModel));
+            var markCourse = _markRepository.Get().Where(x => x.CourseId == markModel.CourseId && x.MenteeId.Equals(markModel.MenteeId)).FirstOrDefault();
+            _markRepository.Delete(markCourse);
+          
             _markRepository.Save();
 
             var markChecked = _markRepository
                             .Get()
-                            .Where(x => x.CourseId == markModel.CourseId && x.MenteeId.Equals(markModel.MenteeId));
+                            .Where(x => x.CourseId == markModel.CourseId && x.MenteeId.Equals(markModel.MenteeId)).FirstOrDefault();
 
             if (markChecked != null)
             {
                 return _mapper.Map<MarkResponseModel>(markChecked);
+            }
+
+            return null;
+        }
+
+        public MarkResponseModel CheckExistInMark(string menteeId, int courseId)
+        {
+            var markCourse = _markRepository.Get().Where(x => x.CourseId == courseId && x.MenteeId.Equals(menteeId)).FirstOrDefault();
+
+            if (markCourse != null)
+            {
+                return _mapper.Map<MarkResponseModel>(markCourse);
             }
 
             return null;
