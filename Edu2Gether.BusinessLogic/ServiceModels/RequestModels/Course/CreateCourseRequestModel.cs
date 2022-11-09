@@ -5,7 +5,6 @@ namespace Edu2Gether.BusinessLogic.RequestModels.Course
 {
 
    public class CreateCourseRequestModel {
-        public int Id { get; set; }
         public string Name { get; set; }
         public string Detail { get; set; }
         public string VideoUrl { get; set; }
