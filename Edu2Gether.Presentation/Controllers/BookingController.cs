@@ -61,7 +61,7 @@ namespace Edu2Gether.Presentation.Controllers
                 return NotFound("Can't create booking");
             }
 
-            return bookingCreated;
+            return StatusCode(201, bookingCreated);
         }
 
         [MapToApiVersion("1")]
@@ -75,7 +75,7 @@ namespace Edu2Gether.Presentation.Controllers
                 return NotFound("Can't cancle booking");
             }
 
-            return bookingCancled;
+            return StatusCode(200, bookingCancled);
         }
     }
 }

@@ -53,7 +53,7 @@ namespace Edu2Gether.Presentation.Controllers
                 return NotFound("Can't create mentee with this id");
             }
 
-            return menteeAdded;
+            return StatusCode(201, menteeAdded);
         }
 
         [MapToApiVersion("1")]
@@ -67,7 +67,7 @@ namespace Edu2Gether.Presentation.Controllers
                 return NotFound("Can't update mentee with this id");
             }
 
-            return menteeUpdated;
+            return StatusCode(200, menteeUpdated);
         }
 
         [MapToApiVersion("1")]
@@ -81,7 +81,7 @@ namespace Edu2Gether.Presentation.Controllers
                 return NotFound("Can't change mentee status with this id");
             }
 
-            return menteeChanged;
+            return StatusCode(200, menteeChanged);
         }
     }
 }

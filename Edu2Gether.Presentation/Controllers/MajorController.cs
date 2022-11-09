@@ -46,9 +46,11 @@ namespace Edu2Gether.Presentation.Controllers
 
         [MapToApiVersion("1")]
         [HttpPost]
-        public ActionResult<MajorResponseModel> CreateMajor(CreateMajorRequestModel major)
+        public ActionResult<MajorResponseModel> CreateMajor([FromForm] CreateMajorRequestModel major)
         {
-            return _majorService.CreateMajor(major);
+            var majorCreated = _majorService.CreateMajor(major);
+
+            return StatusCode(201, majorCreated);
         }
 
     }

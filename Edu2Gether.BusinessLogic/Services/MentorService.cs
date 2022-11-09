@@ -17,7 +17,8 @@ namespace Edu2Gether.BusinessLogic.Services
         MentorResponseModel CreateMentor(CreateMentorRequestModel mentor);
         MentorResponseModel UpdateMentor(UpdateMentorRequestModel mentorUpdate);
         MentorResponseModel ChangeStatusMentor(int statusId, string mentorId);
-        decimal GetMentorRating(string mentorId); 
+        decimal GetMentorRating(string mentorId);
+        List<MentorResponseModel> GetMentorByName(string name);
     }
 
     public class MentorService : IMentorService {
@@ -103,6 +104,14 @@ namespace Edu2Gether.BusinessLogic.Services
             }
 
             return Math.Round((decimal) numberRating / totalRating, 2);
+        }
+
+        public List<MentorResponseModel> GetMentorByName(string name)
+        {
+            List<Mentor> mentors = new List<Mentor>();
+            mentors = _mentorRepository.Get().Where(x => x.FullName.ToLower().Contains(name.ToLower())).ToList();
+
+            return _mapper.Map<List<MentorResponseModel>>(mentors);
         }
     }
 

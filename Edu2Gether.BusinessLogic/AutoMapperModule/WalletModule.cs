@@ -11,7 +11,7 @@ namespace Edu2Gether.BusinessLogic.AutoMapperModule
     {
         public static void ConfigWalletModule(this IMapperConfigurationExpression mc)
         {
-            mc.CreateMap<Wallet, WalletViewModel>().ReverseMap();
+            mc.CreateMap<Wallet, WalletResponseModel>().ReverseMap();
             mc.CreateMap<Wallet, CreateWalletRequestModel>().ReverseMap();
             mc.CreateMap<Wallet, UpdateWalletRequestModel>().ReverseMap();
         }

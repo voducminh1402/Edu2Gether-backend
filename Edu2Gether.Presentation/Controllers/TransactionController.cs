@@ -71,7 +71,7 @@ namespace Edu2Gether.Presentation.Controllers
             {
                 return NotFound("Can't create transaction!");
             }
-            return Ok(transaction);
+            return StatusCode(201, transaction);
         }
     }
 }

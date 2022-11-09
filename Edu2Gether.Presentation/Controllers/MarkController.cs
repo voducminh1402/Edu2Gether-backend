@@ -34,7 +34,7 @@ namespace Edu2Gether.Presentation.Controllers
                 return NotFound("Can't mark this course!");
             }
 
-            return markFollowed;
+            return StatusCode(200, markFollowed);
         }
 
         [MapToApiVersion("1")]
@@ -59,6 +59,27 @@ namespace Edu2Gether.Presentation.Controllers
                 return Ok($"Unmark course {mark.CourseId} successfully");
             }
             
+        }
+
+        [MapToApiVersion("1")]
+        [HttpGet("check-exist")]
+        public ActionResult<BaseResponseModel> CheckExistInMark([FromQuery]string menteeId, [FromQuery]int courseId)
+        {
+            var mark = _markService.CheckExistInMark(menteeId, courseId);
+
+            if (mark == null)
+            {
+                return new BaseResponseModel
+                {
+                    StatusCode = 404,
+                    Message = "Not Exist"
+                };
+            }
+            return new BaseResponseModel
+            {
+                StatusCode = 200,
+                Message = "Existed"
+            };
         }
     }
 }

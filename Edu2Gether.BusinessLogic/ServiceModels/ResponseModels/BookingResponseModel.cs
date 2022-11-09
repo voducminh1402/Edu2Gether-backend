@@ -1,4 +1,6 @@
 
+using Edu2Gether.BusinessLogic.ServiceModels.ResponseModels;
+using Edu2Gether.DataAccess.Models;
 using System;
 
 namespace Edu2Gether.BusinessLogic.ViewModels 
@@ -18,6 +20,8 @@ namespace Edu2Gether.BusinessLogic.ViewModels
         public string Comment { get; set; }
         public DateTime? FeedbackTime { get; set; }
         public int SlotId { get; set; }
+        public CourseResponseModel Course { get; set; }
+        public MenteeResponseModel Mentee { get; set; }
     }
 
 }

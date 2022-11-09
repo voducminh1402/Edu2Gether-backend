@@ -11,7 +11,7 @@ namespace Edu2Gether.Presentation.Controllers
     [ApiController]
     [ApiVersion("1")]
     [Route("api/v1/mentors")]
-    public class MentorController
+    public class MentorController : ControllerBase
     {
         private IMentorService _mentorService;
 
@@ -42,6 +42,20 @@ namespace Edu2Gether.Presentation.Controllers
         }
 
         [MapToApiVersion("1")]
+        [HttpGet("mentor")]
+        public ActionResult<List<MentorResponseModel>> GetMentorByName([FromQuery] string name)
+        {
+            var mentor = _mentorService.GetMentorByName(name);
+
+            if (mentor == null)
+            {
+                throw new Exception("Can't found mentor with this name");
+            }
+
+            return mentor;
+        }
+
+        [MapToApiVersion("1")]
         [HttpGet("rating/{mentorId}")]
         public ActionResult<decimal> GetRatingByMentorId(string mentorId)
         {
@@ -66,7 +80,7 @@ namespace Edu2Gether.Presentation.Controllers
                 throw new Exception("Can't create mentor with this id");
             }
 
-            return mentorAdded;
+            return StatusCode(201, mentorAdded);
         }
 
         [MapToApiVersion("1")]
@@ -80,7 +94,7 @@ namespace Edu2Gether.Presentation.Controllers
                 throw new Exception("Can't create mentor with this id");
             }
 
-            return mentorUpdated;
+            return StatusCode(200, mentorUpdated);
         }
 
         [MapToApiVersion("1")]
@@ -94,7 +108,7 @@ namespace Edu2Gether.Presentation.Controllers
                 throw new Exception("Can't change mentor status with this id");
             }
 
-            return mentorChanged;
+            return StatusCode(200, mentorChanged);
         }
     }
 }
